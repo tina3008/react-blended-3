@@ -5,20 +5,19 @@ import { getCountries } from 'service/countryApi';
 export const Home = () => {
   const [coutries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     async function fetchCountry() {
-      setLoading(true)
-      setError(false)
+      setLoading(true);
+      setError(false);
       try {
         const data = await getCountries();
         setCountries(data);
       } catch (error) {
-      setError(error.massage)
-      }
-      finally { 
-        setLoading(false)
-        
+        setError(error.massage);
+      } finally {
+        setLoading(false);
       }
     }
     fetchCountry();
@@ -27,7 +26,7 @@ export const Home = () => {
     <Section>
       <Container>
         {loading && <Loader />}
-        {error && <Heading title={ error} top/>}
+        {error && <Heading title={error} top />}
         <CountryList list={coutries} />
       </Container>
     </Section>
