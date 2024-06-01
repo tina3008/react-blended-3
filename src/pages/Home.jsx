@@ -1,10 +1,24 @@
-import { Container, Heading, Section } from 'components';
+import { Container, CountryList,  Section } from 'components';
+import { useEffect, useState } from 'react';
+import { getCountries } from 'service/countryApi';
 
 export const Home = () => {
+  const [coutries, setCountries] = useState([]);
+  useEffect(
+    () => {
+      async function fetchCountry() {
+        const data = await getCountries();
+      setCountries(data)
+      
+      }
+      fetchCountry();
+    }
+  ,[])
   return (
     <Section>
       <Container>
-        <Heading title="Home" bottom />
+        <CountryList list={coutries} />
+       
       </Container>
     </Section>
   );
